@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="quiz-shell">
+    <header class="quiz-header">
+      <h1 id="quiz-title">Quiz</h1>
+      <p id="quiz-source" class="quiz-source" hidden></p>
+      <p id="quiz-progress" class="quiz-progress"></p>
+    </header>
+
+    <form id="quiz-form" class="quiz-form"><!-- questions render here --></form>
+
+    <div class="quiz-controls">
+      <button type="button" id="submit-btn" class="btn btn-primary">Submit answers</button>
+      <button type="button" id="restart-btn" class="btn btn-secondary" hidden>Shuffle &amp; retry</button>
+    </div>
+
+    <div id="result" class="result" hidden aria-live="polite"></div>
+  </main>
+
+  <!--
+    The questions live here so the page works by simply double-clicking it
+    (file:// blocks fetch). The skill replaces {
+  "title": "MS-700: Managing Microsoft Teams — Practice Quiz",
+  "source": "MS-700.pdf (ExamTopics practice questions)",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Users in your company need to collaborate with users from a single partner company via guest accounts in Microsoft Teams. Guests must NOT be able to invite other guests, and only users from that partner company should be able to collaborate. Which setting should you configure?",
+      "options": [
+        "The external sharing settings in the SharePoint Admin Center",
+        "The external collaboration settings in Azure Active Directory",
+        "The 'Anonymous users can join a meeting' setting in Teams Meeting Settings",
+        "The Global Meeting Policy in the Teams Admin Center"
+      ],
+      "answer": 1,
+      "explanation": "Azure AD external collaboration settings control who can invite guests (so you can stop guests inviting other guests) and let you allowlist specific partner domains. SharePoint settings only govern file sharing, and meeting/anonymous settings don't restrict who guests are or who can invite them."
+    },
+    {
+      "id": 2,
+      "question": "Guest access is enabled in Teams. Company policy requires that guest users cannot use their cameras in meetings, while company users still can. In the Teams Admin Center, where should you make this change?",
+      "options": [
+        "The External access settings in Org-wide settings",
+        "The Teams settings in Org-wide settings",
+        "The Guest access settings in Org-wide settings",
+        "The Audio & Video settings in the default Meeting Policy"
+      ],
+      "answer": 2,
+      "explanation": "Org-wide Guest access settings include a dedicated control for whether guests can turn on their video, applying only to guests. Editing the default Meeting Policy would affect everyone (including company users), and External access governs federation with other domains, not guest meeting capabilities."
+    },
+    {
+      "id": 3,
+      "question": "Users collaborate using private (1:1 and group) chats in Teams. You must ensure that a single user cannot permanently delete the content of those private chats. What should you configure?",
+      "options": [
+        "The user's Microsoft 365 license options in the Microsoft 365 Admin Center",
+        "A meeting policy in Microsoft Teams",
+        "A litigation hold on the user's mailbox",
+        "A sensitivity label in the Security & Compliance center"
+      ],
+      "answer": 2,
+      "explanation": "Teams private chat messages are journaled into the users' Exchange Online mailboxes, so a litigation hold preserves them even if the user deletes the chat — the content is retained and recoverable. Meeting policies, licenses, and sensitivity labels do not preserve deleted chat content."
+    },
+    {
+      "id": 4,
+      "question": "You have a team for the Research department. You need it to be labelled 'Confidential' when viewed in the Teams client. What should you configure?",
+      "options": [
+        "Configure and publish a sensitivity label in the compliance center",
+        "Configure and publish a retention label in the compliance center",
+        "Configure a Teams policy in the Teams admin center",
+        "Configure the Meeting Settings in the Teams admin center"
+      ],
+      "answer": 0,
+      "explanation": "Sensitivity labels can be applied to teams/groups and are shown next to the team name (e.g. 'Confidential'), and they can also enforce privacy and guest-access behaviour. Retention labels govern how long content is kept, not its displayed classification."
+    },
+    {
+      "id": 5,
+      "question": "Each department has its own team. You must ensure that members of the Research team can only communicate via Teams with other Research team members — not with any other department. What should you configure?",
+      "options": [
+        "A Teams meeting policy",
+        "Information barrier policies",
+        "An app protection policy",
+        "Conference bridges"
+      ],
+      "answer": 1,
+      "explanation": "Information barrier policies restrict communication and collaboration between defined groups of users, which is exactly the segmentation required. Meeting and app-protection policies control features/security, not who may communicate with whom."
+    },
+    {
+      "id": 6,
+      "question": "You need to be notified whenever a user creates a new team using the 'Create a team' option in the Teams client. What should you configure?",
+      "options": [
+        "External collaboration settings in Azure Active Directory",
+        "A supervision policy in the compliance center",
+        "An eDiscovery case in the compliance center",
+        "An alert policy in the compliance center"
+      ],
+      "answer": 3,
+      "explanation": "Alert policies in the Microsoft Purview/Security & Compliance center can trigger on the audit activity for creating a team or group and notify admins. eDiscovery is for legal investigations and supervision is for reviewing communications — neither sends creation alerts."
+    },
+    {
+      "id": 7,
+      "question": "A user reports problems with the Teams desktop client on Windows 10. You need to generate the client debug logs to investigate. What is the quickest way to produce them?",
+      "options": [
+        "Press Ctrl+Alt+Shift+1 in the Teams client",
+        "Right-click the Teams icon and select 'Get Logs'",
+        "Open Windows Event Viewer and browse the Application log",
+        "Run a Usage report in the Teams admin center"
+      ],
+      "answer": 0,
+      "explanation": "In the classic Teams desktop client, Ctrl+Alt+Shift+1 generates and saves the diagnostic (debug) logs locally. Usage reports show adoption metrics, not client diagnostics, and Teams does not write its debug logs to the Windows Application event log."
+    },
+    {
+      "id": 8,
+      "question": "A manager needs to view Teams usage reports. Following least privilege, which role should you assign?",
+      "options": [
+        "Teams Communications Administrator",
+        "Security Administrator",
+        "Reports Reader",
+        "Compliance Manager"
+      ],
+      "answer": 2,
+      "explanation": "The Reports Reader role grants read-only access to usage and adoption reports in the Microsoft 365 and Teams admin centers, satisfying least privilege. The Teams Communications Administrator and Security Administrator roles grant far broader management permissions than needed."
+    },
+    {
+      "id": 9,
+      "question": "A team was deleted yesterday and users need it restored. Which tool should you use to restore the deleted team?",
+      "options": [
+        "The Microsoft Teams admin center",
+        "The Microsoft Teams client app",
+        "The Azure Active Directory admin center",
+        "The Exchange Online admin center"
+      ],
+      "answer": 2,
+      "explanation": "A team is backed by a Microsoft 365 group; a deleted group is soft-deleted for 30 days and can be restored from the Azure AD admin center (Deleted groups). Restoring the group brings the team back. The Teams admin center and client don't expose group recovery."
+    },
+    {
+      "id": 10,
+      "question": "A Microsoft 365 group of 300 users (including 50 guests) backs a team. You must remove members and guests who are inactive or no longer need access, and re-validate membership every month. What should you configure?",
+      "options": [
+        "A Conditional Access policy",
+        "A supervision policy",
+        "An access review",
+        "A Teams policy"
+      ],
+      "answer": 2,
+      "explanation": "Access reviews (Azure AD Identity Governance) recur on a schedule (e.g. monthly) and have reviewers attest to whether each member/guest still needs access, automatically removing those who don't. Conditional Access governs sign-in conditions, not membership recertification."
+    },
+    {
+      "id": 11,
+      "question": "All users run the Teams desktop client on non-persistent VDI virtual desktops. Microsoft releases a Teams update with new features and you must ensure all VDI users get it. What should you do?",
+      "options": [
+        "Configure the Teams Upgrade Policy with the 'Upgrade to Teams' setting",
+        "Uninstall the Teams MSI from the VM image and install the latest version",
+        "Configure a Group Policy Object to deploy the latest Teams client",
+        "Configure Windows Updates on the servers hosting the VDI"
+      ],
+      "answer": 1,
+      "explanation": "On non-persistent VDI, Teams is installed per-machine via the MSI and auto-update is disabled, so you update by removing the old MSI from the golden/VM image and installing the new version into the image. Upgrade Policy controls Skype-for-Business-to-Teams coexistence, not client version, and Windows Update doesn't service the Teams client."
+    },
+    {
+      "id": 12,
+      "question": "During a Skype for Business to Teams migration, users should receive chats and calls in Skype for Business but use Teams for group collaboration AND meeting scheduling. Which coexistence (upgrade) mode should you configure?",
+      "options": [
+        "Islands",
+        "Skype for Business only",
+        "Skype for Business with Teams collaboration",
+        "Skype for Business with Teams collaboration and meetings"
+      ],
+      "answer": 3,
+      "explanation": "This mode routes chat and calling to Skype for Business while enabling Teams for both collaboration (channels/teams) and meeting scheduling — exactly the requirement. 'Teams collaboration' alone would leave meetings in Skype for Business, and Islands runs both apps fully in parallel."
+    },
+    {
+      "id": 13,
+      "question": "A new technician must access, monitor, and troubleshoot call quality and reliability using the Call Quality Dashboard and the advanced troubleshooting toolset for all users. Following least privilege, which role should you assign?",
+      "options": [
+        "Teams Communications Support Specialist",
+        "Teams Communications Administrator",
+        "Teams Communications Support Engineer",
+        "Teams Service Administrator"
+      ],
+      "answer": 2,
+      "explanation": "The Teams Communications Support Engineer role provides the advanced call-troubleshooting toolset plus full CQD access. The Support Specialist role can only see limited, basic call info; the Communications Administrator and Service Administrator roles grant broader management rights than least privilege requires."
+    },
+    {
+      "id": 14,
+      "question": "Some branch offices have low-bandwidth links. You want to view packet loss occurring during Teams calls to those branches. Which tool should you use?",
+      "options": [
+        "Microsoft Teams Usage Report",
+        "Microsoft Teams Call Quality Dashboard (CQD)",
+        "Microsoft Teams Device Usage Report",
+        "Microsoft Network Testing Companion"
+      ],
+      "answer": 1,
+      "explanation": "The Call Quality Dashboard aggregates real call telemetry — including packet loss, jitter, and round-trip time — and lets you filter by location to spot problem sites. Usage and device reports cover adoption, not network media quality."
+    },
+    {
+      "id": 15,
+      "question": "Most users are on Teams, but several still use Skype for Business Online. You're migrating everyone to Teams and need the Teams client to download and install in the background for all Skype for Business users. What should you configure?",
+      "options": [
+        "The Teams upgrade settings in the Teams admin center",
+        "The External access settings in the Teams admin center",
+        "An App Setup policy in the Teams admin center",
+        "An App Permission policy in the Teams admin center"
+      ],
+      "answer": 0,
+      "explanation": "The Teams upgrade (coexistence) settings include an option to automatically download the Teams client in the background for Skype for Business users, easing the transition. App setup and app permission policies manage which apps appear/are allowed, not client deployment."
+    },
+    {
+      "id": 16,
+      "question": "External contractors access Teams via guest accounts. You must ensure that files containing malware cannot be opened from Teams channels by company users or guests. What should you configure?",
+      "options": [
+        "Sensitivity labels",
+        "Advanced Threat Protection (Safe Attachments for SharePoint, OneDrive, and Teams)",
+        "Privileged Identity Management",
+        "A Conditional Access policy"
+      ],
+      "answer": 1,
+      "explanation": "Microsoft Defender Advanced Threat Protection — specifically Safe Attachments for SharePoint, OneDrive, and Teams — scans files and blocks malicious ones from being opened. Sensitivity labels classify/protect data, Conditional Access governs sign-in, and PIM handles privileged role activation; none scan files for malware."
+    },
+    {
+      "id": 17,
+      "question": "Team1 contains guest users. You must prevent Team1 members from sharing sensitive information with the guests during private chats or in channels. Which type of policy should you configure?",
+      "options": [
+        "A data loss prevention (DLP) policy",
+        "A messaging policy",
+        "An information barrier policy",
+        "A sensitivity label policy"
+      ],
+      "answer": 0,
+      "explanation": "A DLP policy for Teams can detect sensitive information types in chats and channel messages and block them from being shared with external/guest recipients. Information barriers block communication entirely between groups; messaging policies control features like editing/giphys, not data leakage."
+    },
+    {
+      "id": 18,
+      "question": "You need a policy that blocks specific words from being used in the names of newly created teams. Which type of policy should you configure?",
+      "options": [
+        "A group naming policy",
+        "A team templates policy",
+        "A communication compliance policy",
+        "A terms of use (ToU) policy"
+      ],
+      "answer": 0,
+      "explanation": "A Microsoft 365 group naming policy includes a blocked-words list that rejects those terms in group/team names (and can also enforce prefixes/suffixes). Team templates predefine structure, and communication compliance reviews message content — neither restricts team names."
+    },
+    {
+      "id": 19,
+      "question": "You have a Teams Phone deployment and purchase 50 certified Teams devices to use as common area phones. You upload a file of the devices' MAC addresses and need field technicians to provision each device. What should you configure?",
+      "options": [
+        "An app setup policy",
+        "A Teams IP Phone policy",
+        "A configuration profile",
+        "Verification codes"
+      ],
+      "answer": 3,
+      "explanation": "After uploading device MAC addresses, you generate verification codes that technicians enter on each device to provision/sign it in for remote (touchless) onboarding of common area phones. IP phone and app setup policies configure behaviour after sign-in, not the initial provisioning."
+    },
+    {
+      "id": 20,
+      "question": "A user installs the new Teams desktop client on Windows 10 and receives the error 'We've run into an issue.' You must ensure the client can install. What should you do?",
+      "options": [
+        "Clear the cache of the Teams desktop client",
+        "Download and install the ASP.NET Core Runtime",
+        "Start the Teams desktop client with elevated permissions",
+        "Download and install the WebView2 Runtime"
+      ],
+      "answer": 3,
+      "explanation": "The new Teams client depends on the Microsoft Edge WebView2 Runtime; if it's missing, installation fails with this error, so installing WebView2 resolves it. Clearing the cache or elevating permissions doesn't supply the missing runtime dependency."
+    }
+  ]
+}
+ with the contents
+    of questions.json. script.js reads this block first, and falls back to
+    fetching questions.json when the page is served over http://.
+  -->
+  <script type="application/json" id="quiz-data">{
+  "title": "MS-700: Managing Microsoft Teams — Practice Quiz",
+  "source": "MS-700.pdf (ExamTopics practice questions)",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Users in your company need to collaborate with users from a single partner company via guest accounts in Microsoft Teams. Guests must NOT be able to invite other guests, and only users from that partner company should be able to collaborate. Which setting should you configure?",
+      "options": [
+        "The external sharing settings in the SharePoint Admin Center",
+        "The external collaboration settings in Azure Active Directory",
+        "The 'Anonymous users can join a meeting' setting in Teams Meeting Settings",
+        "The Global Meeting Policy in the Teams Admin Center"
+      ],
+      "answer": 1,
+      "explanation": "Azure AD external collaboration settings control who can invite guests (so you can stop guests inviting other guests) and let you allowlist specific partner domains. SharePoint settings only govern file sharing, and meeting/anonymous settings don't restrict who guests are or who can invite them."
+    },
+    {
+      "id": 2,
+      "question": "Guest access is enabled in Teams. Company policy requires that guest users cannot use their cameras in meetings, while company users still can. In the Teams Admin Center, where should you make this change?",
+      "options": [
+        "The External access settings in Org-wide settings",
+        "The Teams settings in Org-wide settings",
+        "The Guest access settings in Org-wide settings",
+        "The Audio & Video settings in the default Meeting Policy"
+      ],
+      "answer": 2,
+      "explanation": "Org-wide Guest access settings include a dedicated control for whether guests can turn on their video, applying only to guests. Editing the default Meeting Policy would affect everyone (including company users), and External access governs federation with other domains, not guest meeting capabilities."
+    },
+    {
+      "id": 3,
+      "question": "Users collaborate using private (1:1 and group) chats in Teams. You must ensure that a single user cannot permanently delete the content of those private chats. What should you configure?",
+      "options": [
+        "The user's Microsoft 365 license options in the Microsoft 365 Admin Center",
+        "A meeting policy in Microsoft Teams",
+        "A litigation hold on the user's mailbox",
+        "A sensitivity label in the Security & Compliance center"
+      ],
+      "answer": 2,
+      "explanation": "Teams private chat messages are journaled into the users' Exchange Online mailboxes, so a litigation hold preserves them even if the user deletes the chat — the content is retained and recoverable. Meeting policies, licenses, and sensitivity labels do not preserve deleted chat content."
+    },
+    {
+      "id": 4,
+      "question": "You have a team for the Research department. You need it to be labelled 'Confidential' when viewed in the Teams client. What should you configure?",
+      "options": [
+        "Configure and publish a sensitivity label in the compliance center",
+        "Configure and publish a retention label in the compliance center",
+        "Configure a Teams policy in the Teams admin center",
+        "Configure the Meeting Settings in the Teams admin center"
+      ],
+      "answer": 0,
+      "explanation": "Sensitivity labels can be applied to teams/groups and are shown next to the team name (e.g. 'Confidential'), and they can also enforce privacy and guest-access behaviour. Retention labels govern how long content is kept, not its displayed classification."
+    },
+    {
+      "id": 5,
+      "question": "Each department has its own team. You must ensure that members of the Research team can only communicate via Teams with other Research team members — not with any other department. What should you configure?",
+      "options": [
+        "A Teams meeting policy",
+        "Information barrier policies",
+        "An app protection policy",
+        "Conference bridges"
+      ],
+      "answer": 1,
+      "explanation": "Information barrier policies restrict communication and collaboration between defined groups of users, which is exactly the segmentation required. Meeting and app-protection policies control features/security, not who may communicate with whom."
+    },
+    {
+      "id": 6,
+      "question": "You need to be notified whenever a user creates a new team using the 'Create a team' option in the Teams client. What should you configure?",
+      "options": [
+        "External collaboration settings in Azure Active Directory",
+        "A supervision policy in the compliance center",
+        "An eDiscovery case in the compliance center",
+        "An alert policy in the compliance center"
+      ],
+      "answer": 3,
+      "explanation": "Alert policies in the Microsoft Purview/Security & Compliance center can trigger on the audit activity for creating a team or group and notify admins. eDiscovery is for legal investigations and supervision is for reviewing communications — neither sends creation alerts."
+    },
+    {
+      "id": 7,
+      "question": "A user reports problems with the Teams desktop client on Windows 10. You need to generate the client debug logs to investigate. What is the quickest way to produce them?",
+      "options": [
+        "Press Ctrl+Alt+Shift+1 in the Teams client",
+        "Right-click the Teams icon and select 'Get Logs'",
+        "Open Windows Event Viewer and browse the Application log",
+        "Run a Usage report in the Teams admin center"
+      ],
+      "answer": 0,
+      "explanation": "In the classic Teams desktop client, Ctrl+Alt+Shift+1 generates and saves the diagnostic (debug) logs locally. Usage reports show adoption metrics, not client diagnostics, and Teams does not write its debug logs to the Windows Application event log."
+    },
+    {
+      "id": 8,
+      "question": "A manager needs to view Teams usage reports. Following least privilege, which role should you assign?",
+      "options": [
+        "Teams Communications Administrator",
+        "Security Administrator",
+        "Reports Reader",
+        "Compliance Manager"
+      ],
+      "answer": 2,
+      "explanation": "The Reports Reader role grants read-only access to usage and adoption reports in the Microsoft 365 and Teams admin centers, satisfying least privilege. The Teams Communications Administrator and Security Administrator roles grant far broader management permissions than needed."
+    },
+    {
+      "id": 9,
+      "question": "A team was deleted yesterday and users need it restored. Which tool should you use to restore the deleted team?",
+      "options": [
+        "The Microsoft Teams admin center",
+        "The Microsoft Teams client app",
+        "The Azure Active Directory admin center",
+        "The Exchange Online admin center"
+      ],
+      "answer": 2,
+      "explanation": "A team is backed by a Microsoft 365 group; a deleted group is soft-deleted for 30 days and can be restored from the Azure AD admin center (Deleted groups). Restoring the group brings the team back. The Teams admin center and client don't expose group recovery."
+    },
+    {
+      "id": 10,
+      "question": "A Microsoft 365 group of 300 users (including 50 guests) backs a team. You must remove members and guests who are inactive or no longer need access, and re-validate membership every month. What should you configure?",
+      "options": [
+        "A Conditional Access policy",
+        "A supervision policy",
+        "An access review",
+        "A Teams policy"
+      ],
+      "answer": 2,
+      "explanation": "Access reviews (Azure AD Identity Governance) recur on a schedule (e.g. monthly) and have reviewers attest to whether each member/guest still needs access, automatically removing those who don't. Conditional Access governs sign-in conditions, not membership recertification."
+    },
+    {
+      "id": 11,
+      "question": "All users run the Teams desktop client on non-persistent VDI virtual desktops. Microsoft releases a Teams update with new features and you must ensure all VDI users get it. What should you do?",
+      "options": [
+        "Configure the Teams Upgrade Policy with the 'Upgrade to Teams' setting",
+        "Uninstall the Teams MSI from the VM image and install the latest version",
+        "Configure a Group Policy Object to deploy the latest Teams client",
+        "Configure Windows Updates on the servers hosting the VDI"
+      ],
+      "answer": 1,
+      "explanation": "On non-persistent VDI, Teams is installed per-machine via the MSI and auto-update is disabled, so you update by removing the old MSI from the golden/VM image and installing the new version into the image. Upgrade Policy controls Skype-for-Business-to-Teams coexistence, not client version, and Windows Update doesn't service the Teams client."
+    },
+    {
+      "id": 12,
+      "question": "During a Skype for Business to Teams migration, users should receive chats and calls in Skype for Business but use Teams for group collaboration AND meeting scheduling. Which coexistence (upgrade) mode should you configure?",
+      "options": [
+        "Islands",
+        "Skype for Business only",
+        "Skype for Business with Teams collaboration",
+        "Skype for Business with Teams collaboration and meetings"
+      ],
+      "answer": 3,
+      "explanation": "This mode routes chat and calling to Skype for Business while enabling Teams for both collaboration (channels/teams) and meeting scheduling — exactly the requirement. 'Teams collaboration' alone would leave meetings in Skype for Business, and Islands runs both apps fully in parallel."
+    },
+    {
+      "id": 13,
+      "question": "A new technician must access, monitor, and troubleshoot call quality and reliability using the Call Quality Dashboard and the advanced troubleshooting toolset for all users. Following least privilege, which role should you assign?",
+      "options": [
+        "Teams Communications Support Specialist",
+        "Teams Communications Administrator",
+        "Teams Communications Support Engineer",
+        "Teams Service Administrator"
+      ],
+      "answer": 2,
+      "explanation": "The Teams Communications Support Engineer role provides the advanced call-troubleshooting toolset plus full CQD access. The Support Specialist role can only see limited, basic call info; the Communications Administrator and Service Administrator roles grant broader management rights than least privilege requires."
+    },
+    {
+      "id": 14,
+      "question": "Some branch offices have low-bandwidth links. You want to view packet loss occurring during Teams calls to those branches. Which tool should you use?",
+      "options": [
+        "Microsoft Teams Usage Report",
+        "Microsoft Teams Call Quality Dashboard (CQD)",
+        "Microsoft Teams Device Usage Report",
+        "Microsoft Network Testing Companion"
+      ],
+      "answer": 1,
+      "explanation": "The Call Quality Dashboard aggregates real call telemetry — including packet loss, jitter, and round-trip time — and lets you filter by location to spot problem sites. Usage and device reports cover adoption, not network media quality."
+    },
+    {
+      "id": 15,
+      "question": "Most users are on Teams, but several still use Skype for Business Online. You're migrating everyone to Teams and need the Teams client to download and install in the background for all Skype for Business users. What should you configure?",
+      "options": [
+        "The Teams upgrade settings in the Teams admin center",
+        "The External access settings in the Teams admin center",
+        "An App Setup policy in the Teams admin center",
+        "An App Permission policy in the Teams admin center"
+      ],
+      "answer": 0,
+      "explanation": "The Teams upgrade (coexistence) settings include an option to automatically download the Teams client in the background for Skype for Business users, easing the transition. App setup and app permission policies manage which apps appear/are allowed, not client deployment."
+    },
+    {
+      "id": 16,
+      "question": "External contractors access Teams via guest accounts. You must ensure that files containing malware cannot be opened from Teams channels by company users or guests. What should you configure?",
+      "options": [
+        "Sensitivity labels",
+        "Advanced Threat Protection (Safe Attachments for SharePoint, OneDrive, and Teams)",
+        "Privileged Identity Management",
+        "A Conditional Access policy"
+      ],
+      "answer": 1,
+      "explanation": "Microsoft Defender Advanced Threat Protection — specifically Safe Attachments for SharePoint, OneDrive, and Teams — scans files and blocks malicious ones from being opened. Sensitivity labels classify/protect data, Conditional Access governs sign-in, and PIM handles privileged role activation; none scan files for malware."
+    },
+    {
+      "id": 17,
+      "question": "Team1 contains guest users. You must prevent Team1 members from sharing sensitive information with the guests during private chats or in channels. Which type of policy should you configure?",
+      "options": [
+        "A data loss prevention (DLP) policy",
+        "A messaging policy",
+        "An information barrier policy",
+        "A sensitivity label policy"
+      ],
+      "answer": 0,
+      "explanation": "A DLP policy for Teams can detect sensitive information types in chats and channel messages and block them from being shared with external/guest recipients. Information barriers block communication entirely between groups; messaging policies control features like editing/giphys, not data leakage."
+    },
+    {
+      "id": 18,
+      "question": "You need a policy that blocks specific words from being used in the names of newly created teams. Which type of policy should you configure?",
+      "options": [
+        "A group naming policy",
+        "A team templates policy",
+        "A communication compliance policy",
+        "A terms of use (ToU) policy"
+      ],
+      "answer": 0,
+      "explanation": "A Microsoft 365 group naming policy includes a blocked-words list that rejects those terms in group/team names (and can also enforce prefixes/suffixes). Team templates predefine structure, and communication compliance reviews message content — neither restricts team names."
+    },
+    {
+      "id": 19,
+      "question": "You have a Teams Phone deployment and purchase 50 certified Teams devices to use as common area phones. You upload a file of the devices' MAC addresses and need field technicians to provision each device. What should you configure?",
+      "options": [
+        "An app setup policy",
+        "A Teams IP Phone policy",
+        "A configuration profile",
+        "Verification codes"
+      ],
+      "answer": 3,
+      "explanation": "After uploading device MAC addresses, you generate verification codes that technicians enter on each device to provision/sign it in for remote (touchless) onboarding of common area phones. IP phone and app setup policies configure behaviour after sign-in, not the initial provisioning."
+    },
+    {
+      "id": 20,
+      "question": "A user installs the new Teams desktop client on Windows 10 and receives the error 'We've run into an issue.' You must ensure the client can install. What should you do?",
+      "options": [
+        "Clear the cache of the Teams desktop client",
+        "Download and install the ASP.NET Core Runtime",
+        "Start the Teams desktop client with elevated permissions",
+        "Download and install the WebView2 Runtime"
+      ],
+      "answer": 3,
+      "explanation": "The new Teams client depends on the Microsoft Edge WebView2 Runtime; if it's missing, installation fails with this error, so installing WebView2 resolves it. Clearing the cache or elevating permissions doesn't supply the missing runtime dependency."
+    }
+  ]
+}
+</script>
+  <script src="script.js"></script>
+</body>
+</html>
