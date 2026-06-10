@@ -55,6 +55,9 @@ body {
 /* Multi-select annotation appended to the stem. */
 .question-stem .multi-tag { color: var(--brand); font-weight: 700; }
 
+/* Note for questions whose original exhibit/image was lost in extraction. */
+.question-stem .image-note { color: var(--muted); font-weight: 600; font-style: italic; }
+
 /* Questions previously answered wrong show their text in red until answered
    correctly again. */
 .question-stem.previously-wrong { color: var(--wrong); }

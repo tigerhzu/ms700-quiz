@@ -94,6 +94,7 @@
         options: opts,
         multi: !!q.multi,
         pick: correct.size,
+        image: !!q.image,
       };
     });
   }
@@ -133,6 +134,12 @@
         tag.className = "multi-tag";
         tag.textContent = ` (多選題:需選 ${q.pick} 項)`;
         stem.appendChild(tag);
+      }
+      if (q.image) {
+        const note = document.createElement("span");
+        note.className = "image-note";
+        note.textContent = " (原題含圖片,此處未含)";
+        stem.appendChild(note);
       }
       card.appendChild(stem);
 

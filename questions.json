@@ -569,7 +569,8 @@
         "Microsoft Teams policies",
         "Meetings policies"
       ],
-      "answer": 0
+      "answer": 0,
+      "image": true
     },
     {
       "id": 52,
@@ -705,7 +706,8 @@
         "communication compliance policies",
         "information barrier policies"
       ],
-      "answer": 3
+      "answer": 3,
+      "image": true
     },
     {
       "id": 66,
@@ -820,7 +822,8 @@
         "From the Microsoft Teams client, modify the channel moderation preferences.",
         "From the Microsoft Teams admin center, modify the messaging policy."
       ],
-      "answer": 2
+      "answer": 2,
+      "image": true
     },
     {
       "id": 77,
@@ -1048,7 +1051,8 @@
         "Group2 and Group3 only",
         "Group1, Group2, Group3, and Group4 Group1Group2Group3"
       ],
-      "answer": 1
+      "answer": 1,
+      "image": true
     },
     {
       "id": 98,
@@ -1059,7 +1063,8 @@
         "From the Microsoft Teams admin center, modify the templates policies.",
         "From PowerShell, modify the Teams policies."
       ],
-      "answer": 2
+      "answer": 2,
+      "image": true
     },
     {
       "id": 99,
@@ -1081,7 +1086,8 @@
         "Set-CsTeamsEnhancedEncryptionPolicy",
         "Set-SPOSiteOffice365Group"
       ],
-      "answer": 1
+      "answer": 1,
+      "image": true
     },
     {
       "id": 101,
@@ -1186,7 +1192,8 @@
         "Create a data loss prevention (DLP) policy for Teams chat and channel messages.",
         "Create a retention policy for the OneDrive accounts location."
       ],
-      "answer": 0
+      "answer": 0,
+      "image": true
     },
     {
       "id": 110,
@@ -1198,7 +1205,8 @@
         "a meeting policy",
         "a messaging policy"
       ],
-      "answer": 0
+      "answer": 0,
+      "image": true
     },
     {
       "id": 111,
@@ -1279,7 +1287,8 @@
         "User1 and User3 only",
         "User1, User2, and User3 User1User2"
       ],
-      "answer": 1
+      "answer": 1,
+      "image": true
     },
     {
       "id": 118,
@@ -1504,7 +1513,8 @@
         "Network planner"
       ],
       "answers": [1, 3],
-      "multi": true
+      "multi": true,
+      "image": true
     },
     {
       "id": 138,
@@ -1646,7 +1656,8 @@
         "Create a custom app setup policy.",
         "Modify the global app setup policy."
       ],
-      "answer": 2
+      "answer": 2,
+      "image": true
     },
     {
       "id": 151,
@@ -1683,7 +1694,8 @@
         "From PowerShell, modify the information barrier policy."
       ],
       "answers": [2, 3],
-      "multi": true
+      "multi": true,
+      "image": true
     },
     {
       "id": 154,
@@ -1826,7 +1838,8 @@
         "two permission policies",
         "one messaging policy only"
       ],
-      "answer": 4
+      "answer": 4,
+      "image": true
     },
     {
       "id": 167,
@@ -1868,7 +1881,8 @@
         "Group2 2",
         "Group3 3"
       ],
-      "answer": 3
+      "answer": 3,
+      "image": true
     },
     {
       "id": 171,
@@ -1879,7 +1893,8 @@
         "the global app setup policy",
         "the global teams policy"
       ],
-      "answer": 2
+      "answer": 2,
+      "image": true
     },
     {
       "id": 172,
@@ -1972,7 +1987,8 @@
         "Group1 and Group3 only",
         "Group1, Group2, and Group3 Group1Group2"
       ],
-      "answer": 2
+      "answer": 2,
+      "image": true
     },
     {
       "id": 180,
@@ -2005,7 +2021,8 @@
         "Modify the Global (Org-wide default) policy and set Create private channels to On.",
         "Create a Teams policy that has Create private channels set to On."
       ],
-      "answer": 3
+      "answer": 3,
+      "image": true
     },
     {
       "id": 183,
@@ -2061,7 +2078,8 @@
         "From the Settings app, modify the Notifications & actions settings.",
         "From the Microsoft Teams admin center, modify the Messaging policies settings."
       ],
-      "answer": 2
+      "answer": 2,
+      "image": true
     },
     {
       "id": 188,
@@ -2095,7 +2113,8 @@
         "Channel2 only",
         "General and Channel1 only"
       ],
-      "answer": 4
+      "answer": 4,
+      "image": true
     },
     {
       "id": 191,
@@ -2117,7 +2136,8 @@
         "Modify the global (Org-wide default) app permission policy.",
         "Modify the global (Org-wide default) app setup policy."
       ],
-      "answer": 0
+      "answer": 0,
+      "image": true
     },
     {
       "id": 193,
@@ -2140,7 +2160,8 @@
         "Channel1 and Channel2 only",
         "General, Channel1, and Channel2 GeneralChannel1 Channel2 F."
       ],
-      "answer": 2
+      "answer": 2,
+      "image": true
     },
     {
       "id": 195,
@@ -2184,7 +2205,8 @@
         "Set Invite external users to shared channels to On for the Teams policy of the marketing department."
       ],
       "answers": [2, 4],
-      "multi": true
+      "multi": true,
+      "image": true
     },
     {
       "id": 199,
@@ -2255,7 +2277,8 @@
         "Host1, Host2, and Host4 only Host1Host2",
         "Host1, Host2, Host3, and Host4 Host1Host2Host3"
       ],
-      "answer": 2
+      "answer": 2,
+      "image": true
     },
     {
       "id": 205,
@@ -2568,7 +2591,8 @@
         "Create an emergency calling policy.",
         "Specify the latitude and longitude of the location."
       ],
-      "answer": 3
+      "answer": 3,
+      "image": true
     },
     {
       "id": 232,
@@ -2660,7 +2684,8 @@
         "Outbound calling",
         "simultaneous ring"
       ],
-      "answer": 0
+      "answer": 0,
+      "image": true
     },
     {
       "id": 240,
@@ -2671,7 +2696,8 @@
         "Microsoft Teams Premium",
         "Microsoft Defender for Cloud Apps"
       ],
-      "answer": 2
+      "answer": 2,
+      "image": true
     },
     {
       "id": 241,
@@ -2682,7 +2708,8 @@
         "From the Microsoft Teams admin center, create and assign a new meeting policy.",
         "From the Microsoft Teams admin center, modify the Meeting settings."
       ],
-      "answer": 2
+      "answer": 2,
+      "image": true
     },
     {
       "id": 242,
@@ -2772,7 +2799,8 @@
         "Simultaneous ring is configured User1.",
         "A policy that limits calls to domestic only is applied to User1."
       ],
-      "answer": 2
+      "answer": 2,
+      "image": true
     },
     {
       "id": 250,
@@ -2796,7 +2824,8 @@
         "Route1",
         "Call1"
       ],
-      "answer": 2
+      "answer": 2,
+      "image": true
     },
     {
       "id": 252,
@@ -2981,7 +3010,8 @@
         "The UDP traffic is being limited.",
         "The TLS traffic is being limited."
       ],
-      "answer": 2
+      "answer": 2,
+      "image": true
     },
     {
       "id": 269,
