@@ -52,6 +52,15 @@ body {
 }
 .question-stem .qnum { color: var(--brand); margin-right: .4rem; }
 
+/* Multi-select annotation appended to the stem. */
+.question-stem .multi-tag { color: var(--brand); font-weight: 700; }
+
+/* Questions previously answered wrong show their text in red until answered
+   correctly again. */
+.question-stem.previously-wrong { color: var(--wrong); }
+.question-stem.previously-wrong .qnum { color: var(--wrong); }
+.question-stem.previously-wrong .multi-tag { color: var(--wrong); }
+
 .option {
   display: flex;
   align-items: flex-start;

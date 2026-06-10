@@ -2,8 +2,14 @@
    everything comes from the quiz data (inline #quiz-data block, or
    questions.json when served over http://).
 
-   Each attempt draws a RANDOM SAMPLE of questions from the full bank (size
-   chosen via the count selector), and shuffles the options within each. */
+   - Each attempt draws a RANDOM SAMPLE of questions from the full bank (size
+     chosen via the count selector), shuffling options within each.
+   - Questions may be single-answer (radio) or multi-answer (checkbox). A
+     multi-answer question carries "multi": true and "answers": [indices]; it
+     is correct only when exactly the right set is selected.
+   - Questions answered WRONG are remembered (localStorage). When such a
+     question reappears in a later attempt its text shows in red; answering it
+     correctly again clears the red. */
 
 (function () {
   "use strict";
@@ -17,9 +23,23 @@
   const resultEl = document.getElementById("result");
   const countSel = document.getElementById("count-select");
 
+  const WRONG_KEY = "ms700_wrong_ids";
+
   let quiz = null;     // the loaded { title, source, questions }
   let view = [];       // per-render sampled questions with shuffled options
   let graded = false;
+  let wrong = loadWrong(); // Set of question ids answered wrong in the past
+
+  function loadWrong() {
+    try {
+      const raw = localStorage.getItem(WRONG_KEY);
+      const arr = raw ? JSON.parse(raw) : [];
+      return new Set(Array.isArray(arr) ? arr : []);
+    } catch (e) { return new Set(); }
+  }
+  function saveWrong() {
+    try { localStorage.setItem(WRONG_KEY, JSON.stringify([...wrong])); } catch (e) {}
+  }
 
   // Fisher–Yates, non-mutating.
   function shuffled(arr) {
@@ -55,13 +75,26 @@
     return isNaN(n) ? total : Math.min(n, total);
   }
 
+  // Indices of correct options for a raw question (single or multi).
+  function correctIndexes(q) {
+    if (q.multi && Array.isArray(q.answers)) return q.answers.slice();
+    if (Array.isArray(q.answers)) return q.answers.slice();
+    return [q.answer];
+  }
+
   function buildView() {
-    // Draw a random sample from the full bank, then shuffle options within each
-    // (remembering which shuffled option is the correct one).
     const pool = shuffled(quiz.questions).slice(0, sampleSize());
     view = pool.map((q) => {
-      const opts = shuffled(q.options.map((text, idx) => ({ text, correct: idx === q.answer })));
-      return { stem: q.question, explanation: q.explanation || "", options: opts };
+      const correct = new Set(correctIndexes(q));
+      const opts = shuffled(q.options.map((text, idx) => ({ text, correct: correct.has(idx) })));
+      return {
+        id: q.id,
+        stem: q.question,
+        explanation: q.explanation || "",
+        options: opts,
+        multi: !!q.multi,
+        pick: correct.size,
+      };
     });
   }
 
@@ -91,8 +124,16 @@
 
       const stem = document.createElement("p");
       stem.className = "question-stem";
+      // Red flag for questions previously answered wrong.
+      if (wrong.has(q.id)) stem.classList.add("previously-wrong");
       stem.innerHTML = `<span class="qnum">Q${qi + 1}.</span>`;
       stem.appendChild(document.createTextNode(q.stem));
+      if (q.multi) {
+        const tag = document.createElement("span");
+        tag.className = "multi-tag";
+        tag.textContent = ` (多選題:需選 ${q.pick} 項)`;
+        stem.appendChild(tag);
+      }
       card.appendChild(stem);
 
       q.options.forEach((opt, oi) => {
@@ -101,7 +142,7 @@
         label.dataset.opt = String(oi);
 
         const input = document.createElement("input");
-        input.type = "radio";
+        input.type = q.multi ? "checkbox" : "radio";
         input.name = `q${qi}`;
         input.value = String(oi);
 
@@ -123,32 +164,48 @@
 
     view.forEach((q, qi) => {
       const card = form.querySelector(`.question[data-q="${qi}"]`);
-      const chosen = form.querySelector(`input[name="q${qi}"]:checked`);
-      const chosenIdx = chosen ? Number(chosen.value) : -1;
-      const correctIdx = q.options.findIndex((o) => o.correct);
-      if (chosenIdx === correctIdx) correct++;
+      const correctIdxs = q.options.map((o, i) => (o.correct ? i : -1)).filter((i) => i >= 0);
+      const chosen = [...card.querySelectorAll(`input[name="q${qi}"]:checked`)].map((c) => Number(c.value));
+      const isRight =
+        chosen.length === correctIdxs.length && correctIdxs.every((i) => chosen.includes(i));
+      if (isRight) correct++;
 
-      // Lock inputs and paint correct / wrong states.
+      // Lock inputs and paint states.
       card.querySelectorAll("input").forEach((i) => (i.disabled = true));
-      const correctLabel = card.querySelector(`.option[data-opt="${correctIdx}"]`);
-      if (correctLabel) correctLabel.classList.add("correct");
-      if (chosenIdx !== -1 && chosenIdx !== correctIdx) {
-        const wrongLabel = card.querySelector(`.option[data-opt="${chosenIdx}"]`);
-        if (wrongLabel) wrongLabel.classList.add("wrong");
+      correctIdxs.forEach((ci) => {
+        const lbl = card.querySelector(`.option[data-opt="${ci}"]`);
+        if (lbl) lbl.classList.add("correct");
+      });
+      chosen.forEach((ch) => {
+        if (!correctIdxs.includes(ch)) {
+          const lbl = card.querySelector(`.option[data-opt="${ch}"]`);
+          if (lbl) lbl.classList.add("wrong");
+        }
+      });
+
+      // Update the wrong-memory and the red flag on this stem.
+      const stem = card.querySelector(".question-stem");
+      if (isRight) {
+        wrong.delete(q.id);
+        if (stem) stem.classList.remove("previously-wrong");
+      } else {
+        wrong.add(q.id);
+        if (stem) stem.classList.add("previously-wrong");
       }
 
-      // Explanation with a verdict (explanation may be empty for this bank).
+      // Verdict + explanation.
       const exp = document.createElement("p");
       exp.className = "explanation";
-      const ok = chosenIdx === correctIdx;
       const verdict = document.createElement("span");
-      verdict.className = "verdict " + (ok ? "ok" : "no");
-      verdict.textContent = ok ? "Correct." : (chosenIdx === -1 ? "Skipped." : "Not quite.");
+      verdict.className = "verdict " + (isRight ? "ok" : "no");
+      verdict.textContent = isRight ? "Correct." : (chosen.length === 0 ? "Skipped." : "Not quite.");
       exp.appendChild(verdict);
       if (q.explanation) exp.appendChild(document.createTextNode(q.explanation));
-      else exp.appendChild(document.createTextNode("Correct answer highlighted above."));
+      else exp.appendChild(document.createTextNode("Correct answer(s) highlighted above."));
       card.appendChild(exp);
     });
+
+    saveWrong();
 
     graded = true;
     submitBtn.hidden = true;
@@ -158,7 +215,8 @@
     resultEl.hidden = false;
     resultEl.innerHTML =
       `<div class="score">${correct} / ${view.length} &nbsp;(${pct}%)</div>` +
-      `<div>Review the answers below, then hit “New random set”.</div>`;
+      `<div>Review the answers below, then hit “New random set”. ` +
+      `Questions you miss turn red when they come back.</div>`;
     resultEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 
