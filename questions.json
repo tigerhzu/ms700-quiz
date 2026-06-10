@@ -1,246 +1,407 @@
 {
   "title": "MS-700: Managing Microsoft Teams — Practice Quiz",
+  "title_zh": "MS-700:管理 Microsoft Teams — 練習測驗",
   "source": "MS-700.pdf (ExamTopics practice questions)",
   "questions": [
     {
       "id": 1,
       "question": "Users in your company need to collaborate with users from a single partner company via guest accounts in Microsoft Teams. Guests must NOT be able to invite other guests, and only users from that partner company should be able to collaborate. Which setting should you configure?",
+      "question_zh": "貴公司的使用者需要透過 Microsoft Teams 中的來賓帳戶,與單一合作夥伴公司的使用者協作。來賓不得邀請其他來賓,且只有該合作夥伴公司的使用者才能參與協作。你應該設定哪一項?",
       "options": [
         "The external sharing settings in the SharePoint Admin Center",
         "The external collaboration settings in Azure Active Directory",
         "The 'Anonymous users can join a meeting' setting in Teams Meeting Settings",
         "The Global Meeting Policy in the Teams Admin Center"
       ],
+      "options_zh": [
+        "SharePoint 系統管理中心的外部共用設定",
+        "Azure Active Directory 的外部協作設定",
+        "Teams 會議設定中的「匿名使用者可加入會議」設定",
+        "Teams 系統管理中心的全域會議原則"
+      ],
       "answer": 1,
-      "explanation": "Azure AD external collaboration settings control who can invite guests (so you can stop guests inviting other guests) and let you allowlist specific partner domains. SharePoint settings only govern file sharing, and meeting/anonymous settings don't restrict who guests are or who can invite them."
+      "explanation": "Azure AD external collaboration settings control who can invite guests (so you can stop guests inviting other guests) and let you allowlist specific partner domains. SharePoint settings only govern file sharing, and meeting/anonymous settings don't restrict who guests are or who can invite them.",
+      "explanation_zh": "Azure AD 外部協作設定可控制誰能邀請來賓(因此可阻止來賓邀請其他來賓),並可將特定合作夥伴網域加入允許清單。SharePoint 設定只管理檔案共用,而會議/匿名設定無法限制來賓的身分或誰能邀請他們。"
     },
     {
       "id": 2,
       "question": "Guest access is enabled in Teams. Company policy requires that guest users cannot use their cameras in meetings, while company users still can. In the Teams Admin Center, where should you make this change?",
+      "question_zh": "Teams 已啟用來賓存取。公司原則要求來賓使用者在會議中不能使用攝影機,但公司內部使用者仍可使用。在 Teams 系統管理中心,你應該在哪裡進行這項變更?",
       "options": [
         "The External access settings in Org-wide settings",
         "The Teams settings in Org-wide settings",
         "The Guest access settings in Org-wide settings",
         "The Audio & Video settings in the default Meeting Policy"
       ],
+      "options_zh": [
+        "組織全域設定中的「外部存取」設定",
+        "組織全域設定中的「Teams」設定",
+        "組織全域設定中的「來賓存取」設定",
+        "預設會議原則中的「音訊與視訊」設定"
+      ],
       "answer": 2,
-      "explanation": "Org-wide Guest access settings include a dedicated control for whether guests can turn on their video, applying only to guests. Editing the default Meeting Policy would affect everyone (including company users), and External access governs federation with other domains, not guest meeting capabilities."
+      "explanation": "Org-wide Guest access settings include a dedicated control for whether guests can turn on their video, applying only to guests. Editing the default Meeting Policy would affect everyone (including company users), and External access governs federation with other domains, not guest meeting capabilities.",
+      "explanation_zh": "組織全域的來賓存取設定包含專門控制來賓是否能開啟視訊的選項,且僅套用於來賓。編輯預設會議原則會影響所有人(包含公司使用者),而外部存取管理的是與其他網域的同盟,並非來賓的會議功能。"
     },
     {
       "id": 3,
       "question": "Users collaborate using private (1:1 and group) chats in Teams. You must ensure that a single user cannot permanently delete the content of those private chats. What should you configure?",
+      "question_zh": "使用者使用 Teams 的私人(一對一與群組)聊天進行協作。你必須確保單一使用者無法永久刪除這些私人聊天的內容。你應該設定什麼?",
       "options": [
         "The user's Microsoft 365 license options in the Microsoft 365 Admin Center",
         "A meeting policy in Microsoft Teams",
         "A litigation hold on the user's mailbox",
         "A sensitivity label in the Security & Compliance center"
       ],
+      "options_zh": [
+        "Microsoft 365 系統管理中心內該使用者的 Microsoft 365 授權選項",
+        "Microsoft Teams 中的會議原則",
+        "該使用者信箱的訴訟保留(litigation hold)",
+        "安全性與合規性中心的敏感度標籤"
+      ],
       "answer": 2,
-      "explanation": "Teams private chat messages are journaled into the users' Exchange Online mailboxes, so a litigation hold preserves them even if the user deletes the chat — the content is retained and recoverable. Meeting policies, licenses, and sensitivity labels do not preserve deleted chat content."
+      "explanation": "Teams private chat messages are journaled into the users' Exchange Online mailboxes, so a litigation hold preserves them even if the user deletes the chat — the content is retained and recoverable. Meeting policies, licenses, and sensitivity labels do not preserve deleted chat content.",
+      "explanation_zh": "Teams 私人聊天訊息會被歸檔(journaled)到使用者的 Exchange Online 信箱,因此訴訟保留即使在使用者刪除聊天後仍能保留這些內容 —— 內容會被保留且可復原。會議原則、授權與敏感度標籤都無法保留已刪除的聊天內容。"
     },
     {
       "id": 4,
       "question": "You have a team for the Research department. You need it to be labelled 'Confidential' when viewed in the Teams client. What should you configure?",
+      "question_zh": "你有一個給研究部門使用的小組(team)。你需要讓它在 Teams 用戶端中檢視時標示為「Confidential(機密)」。你應該設定什麼?",
       "options": [
         "Configure and publish a sensitivity label in the compliance center",
         "Configure and publish a retention label in the compliance center",
         "Configure a Teams policy in the Teams admin center",
         "Configure the Meeting Settings in the Teams admin center"
       ],
+      "options_zh": [
+        "在合規性中心設定並發布敏感度標籤",
+        "在合規性中心設定並發布保留標籤",
+        "在 Teams 系統管理中心設定 Teams 原則",
+        "在 Teams 系統管理中心設定會議設定"
+      ],
       "answer": 0,
-      "explanation": "Sensitivity labels can be applied to teams/groups and are shown next to the team name (e.g. 'Confidential'), and they can also enforce privacy and guest-access behaviour. Retention labels govern how long content is kept, not its displayed classification."
+      "explanation": "Sensitivity labels can be applied to teams/groups and are shown next to the team name (e.g. 'Confidential'), and they can also enforce privacy and guest-access behaviour. Retention labels govern how long content is kept, not its displayed classification.",
+      "explanation_zh": "敏感度標籤可套用至小組/群組,並會顯示在小組名稱旁(例如「Confidential」),也能強制執行隱私權與來賓存取行為。保留標籤管理的是內容保存多久,而非其顯示的分類。"
     },
     {
       "id": 5,
       "question": "Each department has its own team. You must ensure that members of the Research team can only communicate via Teams with other Research team members — not with any other department. What should you configure?",
+      "question_zh": "每個部門都有自己的小組。你必須確保研究小組的成員只能透過 Teams 與其他研究小組成員溝通 —— 不能與任何其他部門溝通。你應該設定什麼?",
       "options": [
         "A Teams meeting policy",
         "Information barrier policies",
         "An app protection policy",
         "Conference bridges"
       ],
+      "options_zh": [
+        "Teams 會議原則",
+        "資訊屏障(Information barrier)原則",
+        "應用程式保護原則",
+        "電話會議橋接(Conference bridges)"
+      ],
       "answer": 1,
-      "explanation": "Information barrier policies restrict communication and collaboration between defined groups of users, which is exactly the segmentation required. Meeting and app-protection policies control features/security, not who may communicate with whom."
+      "explanation": "Information barrier policies restrict communication and collaboration between defined groups of users, which is exactly the segmentation required. Meeting and app-protection policies control features/security, not who may communicate with whom.",
+      "explanation_zh": "資訊屏障原則可限制已定義使用者群組之間的溝通與協作,正好符合所需的區隔。會議與應用程式保護原則控制的是功能/安全性,而非誰可以與誰溝通。"
     },
     {
       "id": 6,
       "question": "You need to be notified whenever a user creates a new team using the 'Create a team' option in the Teams client. What should you configure?",
+      "question_zh": "每當使用者在 Teams 用戶端使用「建立小組」選項建立新小組時,你都需要收到通知。你應該設定什麼?",
       "options": [
         "External collaboration settings in Azure Active Directory",
         "A supervision policy in the compliance center",
         "An eDiscovery case in the compliance center",
         "An alert policy in the compliance center"
       ],
+      "options_zh": [
+        "Azure Active Directory 的外部協作設定",
+        "合規性中心的監督(supervision)原則",
+        "合規性中心的電子文件探索(eDiscovery)案例",
+        "合規性中心的警示原則"
+      ],
       "answer": 3,
-      "explanation": "Alert policies in the Microsoft Purview/Security & Compliance center can trigger on the audit activity for creating a team or group and notify admins. eDiscovery is for legal investigations and supervision is for reviewing communications — neither sends creation alerts."
+      "explanation": "Alert policies in the Microsoft Purview/Security & Compliance center can trigger on the audit activity for creating a team or group and notify admins. eDiscovery is for legal investigations and supervision is for reviewing communications — neither sends creation alerts.",
+      "explanation_zh": "Microsoft Purview/安全性與合規性中心的警示原則可針對建立小組或群組的稽核活動觸發並通知系統管理員。eDiscovery 用於法律調查,監督用於審查通訊 —— 兩者都不會傳送建立通知。"
     },
     {
       "id": 7,
       "question": "A user reports problems with the Teams desktop client on Windows 10. You need to generate the client debug logs to investigate. What is the quickest way to produce them?",
+      "question_zh": "有使用者回報 Windows 10 上的 Teams 桌面用戶端有問題。你需要產生用戶端偵錯記錄以進行調查。產生這些記錄最快的方式是什麼?",
       "options": [
         "Press Ctrl+Alt+Shift+1 in the Teams client",
         "Right-click the Teams icon and select 'Get Logs'",
         "Open Windows Event Viewer and browse the Application log",
         "Run a Usage report in the Teams admin center"
       ],
+      "options_zh": [
+        "在 Teams 用戶端中按 Ctrl+Alt+Shift+1",
+        "在 Teams 圖示上按右鍵並選擇「Get Logs」",
+        "開啟 Windows 事件檢視器並瀏覽應用程式記錄",
+        "在 Teams 系統管理中心執行使用情況報告"
+      ],
       "answer": 0,
-      "explanation": "In the classic Teams desktop client, Ctrl+Alt+Shift+1 generates and saves the diagnostic (debug) logs locally. Usage reports show adoption metrics, not client diagnostics, and Teams does not write its debug logs to the Windows Application event log."
+      "explanation": "In the classic Teams desktop client, Ctrl+Alt+Shift+1 generates and saves the diagnostic (debug) logs locally. Usage reports show adoption metrics, not client diagnostics, and Teams does not write its debug logs to the Windows Application event log.",
+      "explanation_zh": "在傳統的 Teams 桌面用戶端中,Ctrl+Alt+Shift+1 會在本機產生並儲存診斷(偵錯)記錄。使用情況報告顯示的是採用度指標而非用戶端診斷,且 Teams 不會將其偵錯記錄寫入 Windows 應用程式事件記錄。"
     },
     {
       "id": 8,
       "question": "A manager needs to view Teams usage reports. Following least privilege, which role should you assign?",
+      "question_zh": "某位主管需要檢視 Teams 使用情況報告。依照最小權限原則,你應該指派哪個角色?",
       "options": [
         "Teams Communications Administrator",
         "Security Administrator",
         "Reports Reader",
         "Compliance Manager"
       ],
+      "options_zh": [
+        "Teams Communications Administrator",
+        "Security Administrator",
+        "Reports Reader",
+        "Compliance Manager"
+      ],
       "answer": 2,
-      "explanation": "The Reports Reader role grants read-only access to usage and adoption reports in the Microsoft 365 and Teams admin centers, satisfying least privilege. The Teams Communications Administrator and Security Administrator roles grant far broader management permissions than needed."
+      "explanation": "The Reports Reader role grants read-only access to usage and adoption reports in the Microsoft 365 and Teams admin centers, satisfying least privilege. The Teams Communications Administrator and Security Administrator roles grant far broader management permissions than needed.",
+      "explanation_zh": "Reports Reader 角色可授予在 Microsoft 365 與 Teams 系統管理中心對使用情況與採用度報告的唯讀存取權,符合最小權限原則。Teams Communications Administrator 與 Security Administrator 角色授予的管理權限遠超過所需。"
     },
     {
       "id": 9,
       "question": "A team was deleted yesterday and users need it restored. Which tool should you use to restore the deleted team?",
+      "question_zh": "某個小組昨天被刪除,使用者需要將其還原。你應該使用哪個工具還原已刪除的小組?",
       "options": [
         "The Microsoft Teams admin center",
         "The Microsoft Teams client app",
         "The Azure Active Directory admin center",
         "The Exchange Online admin center"
       ],
+      "options_zh": [
+        "Microsoft Teams 系統管理中心",
+        "Microsoft Teams 用戶端應用程式",
+        "Azure Active Directory 系統管理中心",
+        "Exchange Online 系統管理中心"
+      ],
       "answer": 2,
-      "explanation": "A team is backed by a Microsoft 365 group; a deleted group is soft-deleted for 30 days and can be restored from the Azure AD admin center (Deleted groups). Restoring the group brings the team back. The Teams admin center and client don't expose group recovery."
+      "explanation": "A team is backed by a Microsoft 365 group; a deleted group is soft-deleted for 30 days and can be restored from the Azure AD admin center (Deleted groups). Restoring the group brings the team back. The Teams admin center and client don't expose group recovery.",
+      "explanation_zh": "小組是由 Microsoft 365 群組所支援;已刪除的群組會軟刪除保留 30 天,並可從 Azure AD 系統管理中心(已刪除的群組)還原。還原群組即可使小組恢復。Teams 系統管理中心與用戶端並未提供群組復原功能。"
     },
     {
       "id": 10,
       "question": "A Microsoft 365 group of 300 users (including 50 guests) backs a team. You must remove members and guests who are inactive or no longer need access, and re-validate membership every month. What should you configure?",
+      "question_zh": "一個由 300 位使用者(含 50 位來賓)組成的 Microsoft 365 群組支援某個小組。你必須移除不活躍或不再需要存取權的成員與來賓,並每月重新驗證成員資格。你應該設定什麼?",
       "options": [
         "A Conditional Access policy",
         "A supervision policy",
         "An access review",
         "A Teams policy"
       ],
+      "options_zh": [
+        "條件式存取(Conditional Access)原則",
+        "監督(supervision)原則",
+        "存取權檢閱(access review)",
+        "Teams 原則"
+      ],
       "answer": 2,
-      "explanation": "Access reviews (Azure AD Identity Governance) recur on a schedule (e.g. monthly) and have reviewers attest to whether each member/guest still needs access, automatically removing those who don't. Conditional Access governs sign-in conditions, not membership recertification."
+      "explanation": "Access reviews (Azure AD Identity Governance) recur on a schedule (e.g. monthly) and have reviewers attest to whether each member/guest still needs access, automatically removing those who don't. Conditional Access governs sign-in conditions, not membership recertification.",
+      "explanation_zh": "存取權檢閱(Azure AD 身分識別治理)會依排程(例如每月)週期執行,並由檢閱者證明每位成員/來賓是否仍需要存取權,自動移除不再需要的人。條件式存取管理的是登入條件,而非成員資格重新認證。"
     },
     {
       "id": 11,
       "question": "All users run the Teams desktop client on non-persistent VDI virtual desktops. Microsoft releases a Teams update with new features and you must ensure all VDI users get it. What should you do?",
+      "question_zh": "所有使用者都在非持續性 VDI 虛擬桌面上執行 Teams 桌面用戶端。Microsoft 發布了一個含新功能的 Teams 更新,你必須確保所有 VDI 使用者都取得它。你應該怎麼做?",
       "options": [
         "Configure the Teams Upgrade Policy with the 'Upgrade to Teams' setting",
         "Uninstall the Teams MSI from the VM image and install the latest version",
         "Configure a Group Policy Object to deploy the latest Teams client",
         "Configure Windows Updates on the servers hosting the VDI"
       ],
+      "options_zh": [
+        "以「升級至 Teams」設定來設定 Teams 升級原則",
+        "從 VM 映像解除安裝 Teams MSI 並安裝最新版本",
+        "設定群組原則物件(GPO)以部署最新的 Teams 用戶端",
+        "在裝載 VDI 的伺服器上設定 Windows 更新"
+      ],
       "answer": 1,
-      "explanation": "On non-persistent VDI, Teams is installed per-machine via the MSI and auto-update is disabled, so you update by removing the old MSI from the golden/VM image and installing the new version into the image. Upgrade Policy controls Skype-for-Business-to-Teams coexistence, not client version, and Windows Update doesn't service the Teams client."
+      "explanation": "On non-persistent VDI, Teams is installed per-machine via the MSI and auto-update is disabled, so you update by removing the old MSI from the golden/VM image and installing the new version into the image. Upgrade Policy controls Skype-for-Business-to-Teams coexistence, not client version, and Windows Update doesn't service the Teams client.",
+      "explanation_zh": "在非持續性 VDI 上,Teams 是透過 MSI 以每台機器(per-machine)方式安裝且停用自動更新,因此你要從黃金/VM 映像移除舊的 MSI 並將新版本安裝進映像中。升級原則控制的是 Skype for Business 到 Teams 的共存模式,而非用戶端版本,且 Windows 更新並不會維護 Teams 用戶端。"
     },
     {
       "id": 12,
       "question": "During a Skype for Business to Teams migration, users should receive chats and calls in Skype for Business but use Teams for group collaboration AND meeting scheduling. Which coexistence (upgrade) mode should you configure?",
+      "question_zh": "在 Skype for Business 移轉至 Teams 的過程中,使用者應在 Skype for Business 中接收聊天與通話,但使用 Teams 進行群組協作「以及」會議排程。你應該設定哪一種共存(升級)模式?",
       "options": [
         "Islands",
         "Skype for Business only",
         "Skype for Business with Teams collaboration",
         "Skype for Business with Teams collaboration and meetings"
       ],
+      "options_zh": [
+        "Islands",
+        "Skype for Business only",
+        "Skype for Business with Teams collaboration",
+        "Skype for Business with Teams collaboration and meetings"
+      ],
       "answer": 3,
-      "explanation": "This mode routes chat and calling to Skype for Business while enabling Teams for both collaboration (channels/teams) and meeting scheduling — exactly the requirement. 'Teams collaboration' alone would leave meetings in Skype for Business, and Islands runs both apps fully in parallel."
+      "explanation": "This mode routes chat and calling to Skype for Business while enabling Teams for both collaboration (channels/teams) and meeting scheduling — exactly the requirement. 'Teams collaboration' alone would leave meetings in Skype for Business, and Islands runs both apps fully in parallel.",
+      "explanation_zh": "此模式將聊天與通話導向 Skype for Business,同時啟用 Teams 進行協作(頻道/小組)與會議排程 —— 正好符合需求。單獨的「Teams collaboration」會讓會議仍留在 Skype for Business,而 Islands 則讓兩個應用程式完全平行運作。"
     },
     {
       "id": 13,
       "question": "A new technician must access, monitor, and troubleshoot call quality and reliability using the Call Quality Dashboard and the advanced troubleshooting toolset for all users. Following least privilege, which role should you assign?",
+      "question_zh": "一位新技術人員必須使用通話品質儀表板(Call Quality Dashboard)與進階疑難排解工具組,針對所有使用者存取、監控並排解通話品質與可靠性問題。依照最小權限原則,你應該指派哪個角色?",
       "options": [
         "Teams Communications Support Specialist",
         "Teams Communications Administrator",
         "Teams Communications Support Engineer",
         "Teams Service Administrator"
       ],
+      "options_zh": [
+        "Teams Communications Support Specialist",
+        "Teams Communications Administrator",
+        "Teams Communications Support Engineer",
+        "Teams Service Administrator"
+      ],
       "answer": 2,
-      "explanation": "The Teams Communications Support Engineer role provides the advanced call-troubleshooting toolset plus full CQD access. The Support Specialist role can only see limited, basic call info; the Communications Administrator and Service Administrator roles grant broader management rights than least privilege requires."
+      "explanation": "The Teams Communications Support Engineer role provides the advanced call-troubleshooting toolset plus full CQD access. The Support Specialist role can only see limited, basic call info; the Communications Administrator and Service Administrator roles grant broader management rights than least privilege requires.",
+      "explanation_zh": "Teams Communications Support Engineer 角色提供進階通話疑難排解工具組以及完整的 CQD 存取權。Support Specialist 角色只能檢視有限的基本通話資訊;Communications Administrator 與 Service Administrator 角色授予的管理權限超過最小權限所需。"
     },
     {
       "id": 14,
       "question": "Some branch offices have low-bandwidth links. You want to view packet loss occurring during Teams calls to those branches. Which tool should you use?",
+      "question_zh": "部分分公司的連線頻寬較低。你想要檢視這些分公司在 Teams 通話期間發生的封包遺失。你應該使用哪個工具?",
       "options": [
         "Microsoft Teams Usage Report",
         "Microsoft Teams Call Quality Dashboard (CQD)",
         "Microsoft Teams Device Usage Report",
         "Microsoft Network Testing Companion"
       ],
+      "options_zh": [
+        "Microsoft Teams 使用情況報告",
+        "Microsoft Teams 通話品質儀表板(CQD)",
+        "Microsoft Teams 裝置使用情況報告",
+        "Microsoft Network Testing Companion"
+      ],
       "answer": 1,
-      "explanation": "The Call Quality Dashboard aggregates real call telemetry — including packet loss, jitter, and round-trip time — and lets you filter by location to spot problem sites. Usage and device reports cover adoption, not network media quality."
+      "explanation": "The Call Quality Dashboard aggregates real call telemetry — including packet loss, jitter, and round-trip time — and lets you filter by location to spot problem sites. Usage and device reports cover adoption, not network media quality.",
+      "explanation_zh": "通話品質儀表板會彙整真實的通話遙測資料 —— 包含封包遺失、抖動與來回時間 —— 並可依位置篩選以找出問題地點。使用情況與裝置報告涵蓋的是採用度,而非網路媒體品質。"
     },
     {
       "id": 15,
       "question": "Most users are on Teams, but several still use Skype for Business Online. You're migrating everyone to Teams and need the Teams client to download and install in the background for all Skype for Business users. What should you configure?",
+      "question_zh": "大多數使用者已使用 Teams,但仍有數位使用 Skype for Business Online。你正在將所有人移轉至 Teams,並需要為所有 Skype for Business 使用者在背景下載並安裝 Teams 用戶端。你應該設定什麼?",
       "options": [
         "The Teams upgrade settings in the Teams admin center",
         "The External access settings in the Teams admin center",
         "An App Setup policy in the Teams admin center",
         "An App Permission policy in the Teams admin center"
       ],
+      "options_zh": [
+        "Teams 系統管理中心的 Teams 升級設定",
+        "Teams 系統管理中心的外部存取設定",
+        "Teams 系統管理中心的應用程式設定(App Setup)原則",
+        "Teams 系統管理中心的應用程式權限(App Permission)原則"
+      ],
       "answer": 0,
-      "explanation": "The Teams upgrade (coexistence) settings include an option to automatically download the Teams client in the background for Skype for Business users, easing the transition. App setup and app permission policies manage which apps appear/are allowed, not client deployment."
+      "explanation": "The Teams upgrade (coexistence) settings include an option to automatically download the Teams client in the background for Skype for Business users, easing the transition. App setup and app permission policies manage which apps appear/are allowed, not client deployment.",
+      "explanation_zh": "Teams 升級(共存)設定包含一個選項,可為 Skype for Business 使用者在背景自動下載 Teams 用戶端,以利過渡。應用程式設定與應用程式權限原則管理的是哪些應用程式會出現/被允許,而非用戶端部署。"
     },
     {
       "id": 16,
       "question": "External contractors access Teams via guest accounts. You must ensure that files containing malware cannot be opened from Teams channels by company users or guests. What should you configure?",
+      "question_zh": "外部承包商透過來賓帳戶存取 Teams。你必須確保含有惡意程式碼的檔案無法被公司使用者或來賓從 Teams 頻道開啟。你應該設定什麼?",
       "options": [
         "Sensitivity labels",
         "Advanced Threat Protection (Safe Attachments for SharePoint, OneDrive, and Teams)",
         "Privileged Identity Management",
         "A Conditional Access policy"
       ],
+      "options_zh": [
+        "敏感度標籤",
+        "進階威脅防護(SharePoint、OneDrive 與 Teams 的安全附件)",
+        "特殊權限身分識別管理(PIM)",
+        "條件式存取原則"
+      ],
       "answer": 1,
-      "explanation": "Microsoft Defender Advanced Threat Protection — specifically Safe Attachments for SharePoint, OneDrive, and Teams — scans files and blocks malicious ones from being opened. Sensitivity labels classify/protect data, Conditional Access governs sign-in, and PIM handles privileged role activation; none scan files for malware."
+      "explanation": "Microsoft Defender Advanced Threat Protection — specifically Safe Attachments for SharePoint, OneDrive, and Teams — scans files and blocks malicious ones from being opened. Sensitivity labels classify/protect data, Conditional Access governs sign-in, and PIM handles privileged role activation; none scan files for malware.",
+      "explanation_zh": "Microsoft Defender 進階威脅防護 —— 特別是 SharePoint、OneDrive 與 Teams 的安全附件(Safe Attachments)—— 會掃描檔案並封鎖惡意檔案被開啟。敏感度標籤用於分類/保護資料,條件式存取管理登入,PIM 處理特殊權限角色啟用;它們都不會掃描檔案是否含惡意程式碼。"
     },
     {
       "id": 17,
       "question": "Team1 contains guest users. You must prevent Team1 members from sharing sensitive information with the guests during private chats or in channels. Which type of policy should you configure?",
+      "question_zh": "Team1 包含來賓使用者。你必須防止 Team1 成員在私人聊天或頻道中與來賓分享敏感資訊。你應該設定哪一種原則?",
       "options": [
         "A data loss prevention (DLP) policy",
         "A messaging policy",
         "An information barrier policy",
         "A sensitivity label policy"
       ],
+      "options_zh": [
+        "資料外洩防護(DLP)原則",
+        "傳訊(messaging)原則",
+        "資訊屏障(information barrier)原則",
+        "敏感度標籤原則"
+      ],
       "answer": 0,
-      "explanation": "A DLP policy for Teams can detect sensitive information types in chats and channel messages and block them from being shared with external/guest recipients. Information barriers block communication entirely between groups; messaging policies control features like editing/giphys, not data leakage."
+      "explanation": "A DLP policy for Teams can detect sensitive information types in chats and channel messages and block them from being shared with external/guest recipients. Information barriers block communication entirely between groups; messaging policies control features like editing/giphys, not data leakage.",
+      "explanation_zh": "Teams 的 DLP 原則可偵測聊天與頻道訊息中的敏感資訊類型,並封鎖其被分享給外部/來賓收件者。資訊屏障會完全封鎖群組之間的溝通;傳訊原則控制的是編輯、Giphy 等功能,而非資料外洩。"
     },
     {
       "id": 18,
       "question": "You need a policy that blocks specific words from being used in the names of newly created teams. Which type of policy should you configure?",
+      "question_zh": "你需要一個原則來封鎖特定字詞被用於新建立小組的名稱中。你應該設定哪一種原則?",
       "options": [
         "A group naming policy",
         "A team templates policy",
         "A communication compliance policy",
         "A terms of use (ToU) policy"
       ],
+      "options_zh": [
+        "群組命名原則",
+        "小組範本(team templates)原則",
+        "通訊合規性原則",
+        "使用規定(ToU)原則"
+      ],
       "answer": 0,
-      "explanation": "A Microsoft 365 group naming policy includes a blocked-words list that rejects those terms in group/team names (and can also enforce prefixes/suffixes). Team templates predefine structure, and communication compliance reviews message content — neither restricts team names."
+      "explanation": "A Microsoft 365 group naming policy includes a blocked-words list that rejects those terms in group/team names (and can also enforce prefixes/suffixes). Team templates predefine structure, and communication compliance reviews message content — neither restricts team names.",
+      "explanation_zh": "Microsoft 365 群組命名原則包含封鎖字詞清單,可拒絕群組/小組名稱中使用這些字詞(也可強制前置詞/後置詞)。小組範本預先定義結構,通訊合規性審查訊息內容 —— 兩者都不會限制小組名稱。"
     },
     {
       "id": 19,
       "question": "You have a Teams Phone deployment and purchase 50 certified Teams devices to use as common area phones. You upload a file of the devices' MAC addresses and need field technicians to provision each device. What should you configure?",
+      "question_zh": "你有一個 Teams Phone 部署,並購買了 50 台通過認證的 Teams 裝置作為公共區域電話。你上傳了一個包含這些裝置 MAC 位址的檔案,並需要現場技術人員佈建每一台裝置。你應該設定什麼?",
       "options": [
         "An app setup policy",
         "A Teams IP Phone policy",
         "A configuration profile",
         "Verification codes"
       ],
+      "options_zh": [
+        "應用程式設定(App Setup)原則",
+        "Teams IP 電話原則",
+        "組態設定檔(configuration profile)",
+        "驗證碼(Verification codes)"
+      ],
       "answer": 3,
-      "explanation": "After uploading device MAC addresses, you generate verification codes that technicians enter on each device to provision/sign it in for remote (touchless) onboarding of common area phones. IP phone and app setup policies configure behaviour after sign-in, not the initial provisioning."
+      "explanation": "After uploading device MAC addresses, you generate verification codes that technicians enter on each device to provision/sign it in for remote (touchless) onboarding of common area phones. IP phone and app setup policies configure behaviour after sign-in, not the initial provisioning.",
+      "explanation_zh": "上傳裝置 MAC 位址後,你會產生驗證碼,技術人員在每台裝置上輸入驗證碼即可佈建/登入,以遠端(免接觸)方式上線公共區域電話。IP 電話與應用程式設定原則設定的是登入後的行為,而非初始佈建。"
     },
     {
       "id": 20,
       "question": "A user installs the new Teams desktop client on Windows 10 and receives the error 'We've run into an issue.' You must ensure the client can install. What should you do?",
+      "question_zh": "某使用者在 Windows 10 上安裝新版 Teams 桌面用戶端,並收到錯誤「We've run into an issue.」。你必須確保用戶端能夠安裝。你應該怎麼做?",
       "options": [
         "Clear the cache of the Teams desktop client",
         "Download and install the ASP.NET Core Runtime",
         "Start the Teams desktop client with elevated permissions",
         "Download and install the WebView2 Runtime"
       ],
+      "options_zh": [
+        "清除 Teams 桌面用戶端的快取",
+        "下載並安裝 ASP.NET Core Runtime",
+        "以提升的權限啟動 Teams 桌面用戶端",
+        "下載並安裝 WebView2 Runtime"
+      ],
       "answer": 3,
-      "explanation": "The new Teams client depends on the Microsoft Edge WebView2 Runtime; if it's missing, installation fails with this error, so installing WebView2 resolves it. Clearing the cache or elevating permissions doesn't supply the missing runtime dependency."
+      "explanation": "The new Teams client depends on the Microsoft Edge WebView2 Runtime; if it's missing, installation fails with this error, so installing WebView2 resolves it. Clearing the cache or elevating permissions doesn't supply the missing runtime dependency.",
+      "explanation_zh": "新版 Teams 用戶端相依於 Microsoft Edge WebView2 Runtime;若缺少它,安裝會以此錯誤失敗,因此安裝 WebView2 即可解決。清除快取或提升權限都無法提供缺少的執行階段相依項目。"
     }
   ]
 }
