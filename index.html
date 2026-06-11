@@ -12,25 +12,47 @@
       <h1 id="quiz-title">Quiz</h1>
       <p id="quiz-source" class="quiz-source" hidden></p>
       <p id="quiz-progress" class="quiz-progress"></p>
-      <div class="quiz-toolbar">
-        <label for="count-select">Questions per attempt:</label>
-        <select id="count-select" class="count-select">
-          <option value="10">10</option>
-          <option value="25" selected>25</option>
-          <option value="50">50</option>
-          <option value="all">All</option>
-        </select>
-      </div>
     </header>
 
-    <form id="quiz-form" class="quiz-form"><!-- questions render here --></form>
+    <!-- Mode selection screen. Click an image to start that mode. -->
+    <section id="mode-select" class="mode-select">
+      <h2 class="mode-heading">選擇你的挑戰模式</h2>
+      <p class="mode-subheading">點擊圖片即可開始挑戰</p>
+      <div class="mode-grid">
+        <button type="button" class="mode-card" data-mode="pussy">
+          <img src="img/pussy.png" alt="Pussy 模式" />
+          <span class="mode-name">Pussy</span>
+          <span class="mode-desc">如果你是娘泡就點這個 · 10 題</span>
+        </button>
+        <button type="button" class="mode-card" data-mode="human">
+          <img src="img/human.png" alt="Human 模式" />
+          <span class="mode-name">Human</span>
+          <span class="mode-desc">如果你還算是人就點這個 · 20 題</span>
+        </button>
+        <button type="button" class="mode-card mode-card-tiger" data-mode="tiger">
+          <img src="img/tiger.jpg" alt="Tiger 模式" />
+          <span class="mode-name">Tiger</span>
+          <span class="mode-desc">如果你很屌就點這個 · 25 題</span>
+        </button>
+      </div>
+    </section>
 
-    <div class="quiz-controls">
-      <button type="button" id="submit-btn" class="btn btn-primary">Submit answers</button>
-      <button type="button" id="restart-btn" class="btn btn-secondary" hidden>New random set</button>
-    </div>
+    <!-- Quiz screen. Shown after a mode is chosen. -->
+    <section id="quiz-screen" class="quiz-screen" hidden>
+      <div class="quiz-topbar">
+        <button type="button" id="back-btn" class="btn btn-secondary btn-small">← 模式選擇</button>
+        <span id="mode-badge" class="mode-badge"></span>
+      </div>
 
-    <div id="result" class="result" hidden aria-live="polite"></div>
+      <form id="quiz-form" class="quiz-form"><!-- questions render here --></form>
+
+      <div class="quiz-controls">
+        <button type="button" id="submit-btn" class="btn btn-primary">交卷對答案</button>
+        <button type="button" id="restart-btn" class="btn btn-secondary" hidden>再抽一組</button>
+      </div>
+
+      <div id="result" class="result" hidden aria-live="polite"></div>
+    </section>
   </main>
 
   <!--
